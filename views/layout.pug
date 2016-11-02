@@ -1,14 +1,18 @@
-doctype html
 html
   head
+    title
+    link(href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css")
     link(rel='stylesheet', href='/stylesheets/style.css')
-    title Nav Bar
+    script(src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous")
+    script(src="../javascripts/navBar.js")
   body
     nav
       ul
         li
           a(href='/') Home
         li
-          a(href='/books/add') Add Book
+          a(href='/add/books') Add Book
+
+    main.page-column
 
 block content

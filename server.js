@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var path = require('path');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var methodOverride = require('method-override');
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use('/', router);
 app.set('view engine', 'pug');
+app.use(express.static(path.join(__dirname, 'public')));
 
 // INIT DB
 var mongoURI = 'mongodb://localhost/bookstoredemo';
@@ -21,6 +23,13 @@ db.once('open', function () {
   var Book = require('./app/models/book');
 
   router
+
+  .get('/', function (reg, res, next) {
+    Book.find(function (err, books, count) {
+      res.render('index', { books: books });
+    });
+  })
+
   .get('/api/books', function (reg, res, next) {
     Book.find(function (err, books, count) {
       res.render('index', { books: books });
