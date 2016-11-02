@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use('/', router);
+app.set('view engine', 'pug');
 
 // INIT DB
 var mongoURI = 'mongodb://localhost/bookstoredemo';
@@ -22,7 +23,7 @@ db.once('open', function () {
   router
   .get('/api/books', function (reg, res, next) {
     Book.find(function (err, books, count) {
-      res.json({ books: books });
+      res.render('index', { books: books });
     });
   })
 
@@ -31,7 +32,7 @@ db.once('open', function () {
     var book = new Book({
       title: req.params.title
     });
-    
+
     book.save()
       .then(function (book) {
         res.json(201, book);

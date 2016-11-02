@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  main
+    aside
+      form
+        div
+          input.search-box(type='text', name='search', placeholder='Search..')
+
+        label
+          input(type='radio', value='byTitle', name='type')
+          i Book Titles
+        label
+          input(type='radio', value='byAuthor', name='type')
+          i Authors
+        label
+          input(type='radio', value='byGenre', name='type')
+          i Genres
+
+        div
+          button.submit(type='submit') Search
